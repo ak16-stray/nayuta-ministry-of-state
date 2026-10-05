@@ -1,11 +1,19 @@
-# Nayuta Ministry of State
+# NAYUTA Ministry of State
 
-Official website of the Ministry of State of the Principality of Nayuta.
+ナユタ公国 国務省の公式サイト（架空国家シミュレーション）。
 
-The homepage dynamically displays the latest three articles from the current Note account via RSS.
+## NAYUTA PUBLIC 自動表示
 
-Current test feed: `https://note.com/straywine/rss`
+トップページは `note.json` を読み込み、最新3記事を表示します。
 
-When the official NAYUTA PUBLIC Note account is ready, change `NOTE_RSS` in `index.html`.
+GitHub Actions が毎時17分に Note のRSSを取得し、`note.json` を更新します。
 
-The Principality of Nayuta is a fictional country created for a nation-building simulation project.
+現在はテスト用として以下のNote RSSを使用しています。
+
+`https://note.com/straywine/rss`
+
+正式なNAYUTA PUBLICへ切り替える場合は、`.github/workflows/update-note.yml` の `RSS_URL` を変更してください。
+
+## 注意
+
+ナユタ公国は架空の国家です。
