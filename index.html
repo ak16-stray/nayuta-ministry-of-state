@@ -35,12 +35,12 @@
   </section>
 
   <section class="profile">
-    <div class="section-label">NAYUTA PROFILE</div>
-    <h2>ナユタ公国 基本情報</h2>
-    <img src="nayuta-profile.jpg" alt="ナユタ公国の地図と基本情報">
+    <div class="container">
+      <div class="section-label">NAYUTA PROFILE</div>
+      <h2>ナユタ公国 基本情報</h2>
+      <img src="nayuta-profile.jpg" alt="ナユタ公国の地図と基本情報">
+    </div>
   </section>
-
-  
 
   <section class="section gray" id="policy">
     <div class="container">
@@ -69,9 +69,18 @@
       <h2>国際関係</h2>
       <p>ナユタ公国は、近隣諸国をはじめ、世界各地域との安定した関係の構築を目指します。</p>
       <div class="relation-list">
-        <div><strong>日本</strong><span>歴史的・経済的な関係を基盤とする重要なパートナー</span></div>
-        <div><strong>米国</strong><span>安全保障・経済・科学技術分野における重要なパートナー</span></div>
-        <div><strong>その他の国・地域</strong><span>相互の利益と尊重に基づく関係を構築</span></div>
+        <div>
+          <strong>日本</strong>
+          <span>歴史的・経済的な関係を基盤とする重要なパートナー</span>
+        </div>
+        <div>
+          <strong>米国</strong>
+          <span>安全保障・経済・科学技術分野における重要なパートナー</span>
+        </div>
+        <div>
+          <strong>その他の国・地域</strong>
+          <span>相互の利益と尊重に基づく関係を構築</span>
+        </div>
       </div>
     </div>
   </section>
@@ -106,8 +115,10 @@ fetch("note.json?ts=" + Date.now())
   })
   .then(data => {
     const feed = document.getElementById("note-feed");
+
     if (!data.items || data.items.length === 0) {
-      feed.innerHTML = '<div class="note-loading">現在、掲載記事はありません。</div>';
+      feed.innerHTML =
+        '<div class="note-loading">現在、掲載記事はありません。</div>';
       return;
     }
 
@@ -127,12 +138,18 @@ fetch("note.json?ts=" + Date.now())
 
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, c => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    "\"":"&quot;",
+    "'":"&#039;"
   }[c]));
 }
+
 function escapeAttr(value) {
   return escapeHtml(value);
 }
 </script>
+
 </body>
 </html>
