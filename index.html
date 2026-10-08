@@ -46,15 +46,18 @@
     <div class="container">
       <div class="section-label">FOREIGN POLICY</div>
       <h2>外交政策</h2>
+
       <div class="cards">
         <article class="card">
           <h3>平和と安全</h3>
           <p>対話と外交を基本とし、国民の安全と地域の平和を守ります。</p>
         </article>
+
         <article class="card">
           <h3>相互主義</h3>
           <p>相互の尊重と対等な関係を基本に、各国との制度的な関係を築きます。</p>
         </article>
+
         <article class="card">
           <h3>国際協力</h3>
           <p>科学、環境、防災、海洋など、国境を越える課題に協力して取り組みます。</p>
@@ -67,16 +70,20 @@
     <div class="container">
       <div class="section-label">INTERNATIONAL RELATIONS</div>
       <h2>国際関係</h2>
+
       <p>ナユタ公国は、近隣諸国をはじめ、世界各地域との安定した関係の構築を目指します。</p>
+
       <div class="relation-list">
         <div>
           <strong>日本</strong>
           <span>歴史的・経済的な関係を基盤とする重要なパートナー</span>
         </div>
+
         <div>
           <strong>米国</strong>
           <span>安全保障・経済・科学技術分野における重要なパートナー</span>
         </div>
+
         <div>
           <strong>その他の国・地域</strong>
           <span>相互の利益と尊重に基づく関係を構築</span>
@@ -89,13 +96,23 @@
     <div class="container">
       <div class="section-label">NAYUTA PUBLIC</div>
       <h2>ナユタ公国の現在</h2>
-      <p class="section-intro">国家を運営する中で生まれる課題、現状、解決策を考える公共メディア。</p>
+
+      <p class="section-intro">
+        国家を運営する中で生まれる課題、現状、解決策を考える公共メディア。
+      </p>
 
       <div id="note-feed" class="note-feed">
         <div class="note-loading">記事を読み込んでいます……</div>
       </div>
 
-      <a class="button" href="https://note.com/nayuta_public_" target="_blank" rel="noopener">NAYUTA PUBLIC を見る</a>
+      <a
+        class="button"
+        href="https://note.com/nayuta_public_"
+        target="_blank"
+        rel="noopener"
+      >
+        NAYUTA PUBLIC を見る
+      </a>
     </div>
   </section>
 </main>
@@ -103,7 +120,9 @@
 <footer class="site-footer">
   <div class="container">
     <p>© Principality of Nayuta — Ministry of State</p>
-    <p>※ナユタ公国は架空の国家です。本サイトは国家シミュレーションプロジェクトの一部として制作されています。</p>
+    <p>
+      ※ナユタ公国は架空の国家です。本サイトは国家シミュレーションプロジェクトの一部として制作されています。
+    </p>
   </div>
 </footer>
 
@@ -125,9 +144,18 @@ fetch("note.json?ts=" + Date.now())
     feed.innerHTML = data.items.slice(0, 3).map(item => `
       <article class="note-card">
         <div class="note-date">${escapeHtml(item.date || "")}</div>
+
         <h3>${escapeHtml(item.title || "無題")}</h3>
-        <p>${escapeHtml(item.description || "")}</p>
-        <a href="${escapeAttr(item.link)}" target="_blank" rel="noopener">記事を読む →</a>
+
+        <p>${stripHtml(item.description || "")}</p>
+
+        <a
+          href="${escapeAttr(item.link)}"
+          target="_blank"
+          rel="noopener"
+        >
+          記事を読む →
+        </a>
       </article>
     `).join("");
   })
@@ -137,17 +165,23 @@ fetch("note.json?ts=" + Date.now())
   });
 
 function escapeHtml(value) {
-  return String(value).replace(/[&<>"']/g, c => ({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    "\"":"&quot;",
-    "'":"&#039;"
+  return String(value).replace(/[&<>\"']/g, c => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    "\"": "&quot;",
+    "'": "&#039;"
   }[c]));
 }
 
 function escapeAttr(value) {
   return escapeHtml(value);
+}
+
+function stripHtml(value) {
+  const div = document.createElement("div");
+  div.innerHTML = String(value);
+  return div.textContent || div.innerText || "";
 }
 </script>
 
